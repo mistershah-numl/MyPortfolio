@@ -4,30 +4,43 @@ import { Badge } from "@/components/ui/badge" // Correct import for Badge
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Github, Star } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"; // Ensure this import is present
 
 const projects = [
     {
-        title: "DeFi Trading Platform",
+        title: "Glocal Travel",
         description:
-            "Advanced decentralized trading platform with automated market making, yield farming, and governance features.",
-        tech: ["React", "Solidity", "Web3.js", "Node.js", "PostgreSQL"],
-        category: "Blockchain",
-        image: "/placeholder.svg?height=300&width=500",
-        github: "#",
-        demo: "#",
+            "A modern web app for spiritual journeys, featuring Hajj and Umrah packages with a seamless user experience.",
+        tech: ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "Lucide React"],
+        category: "Full-Stack",
+        image: "https://sjc.microlink.io/xJELiKL8C-JYkw01BrOmgqV0W6MGwPFnsITauVjMvA8fp8nImdW9WbjHdkcSzKB0EXPGbTCDFgFMD0VKXTWtyQ.jpeg",
+        github: "https://github.com/mistershah-numl/G-Local-Travels",
+        demo: "https://g-local-travels.vercel.app/",
         featured: true,
     },
     {
-        title: "Security Audit Dashboard",
+        title: "Assessment Tracker",
         description:
-            "Enterprise-grade security monitoring dashboard with real-time threat detection and vulnerability management.",
-        tech: ["Next.js", "Python", "FastAPI", "Redis", "Docker"],
-        category: "Cybersecurity",
-        image: "/placeholder.svg?height=300&width=500",
-        github: "#",
-        demo: "#",
+            "A powerful Assessment Tracker & feedback tool for team assessments and leadership development.",
+        tech: ["Next.js", "React", "Tailwind CSS", "TypeScript", "Vercel"],
+        category: "Full-Stack",
+        image: "https://api.microlink.io?url=https://leadbetter-delta.vercel.app/&screenshot=true&embed=screenshot.url",
+        github: "https://github.com/mistershah-numl/Assessment-Tracker",
+        demo: "https://leadbetter-delta.vercel.app/",
         featured: true,
     },
+    {
+        title: "React GPT-3 Static Website",
+        description:
+            "A simple one-page SPA built with React, showcasing an elegant design and deployed on GitHub Pages.",
+        tech: ["React", "HTML", "CSS", "SCSS", "JavaScript"],
+        category: "Front-End",
+        image: "https://api.microlink.io?url=https://mistershah-numl.github.io/react-gpt3/&screenshot=true&embed=screenshot.url",
+        github: "https://github.com/mistershah-numl/react-gpt3",
+        demo: "https://mistershah-numl.github.io/react-gpt3/",
+        featured: true,
+    },
+    /*
     {
         title: "E-commerce Microservices",
         description: "Scalable e-commerce platform built with microservices architecture and containerized deployment.",
@@ -38,7 +51,7 @@ const projects = [
         demo: "#",
         featured: true,
     },
-    /*  {
+      {
           title: "NFT Marketplace",
           description: "Full-featured NFT marketplace with minting, trading, and royalty distribution capabilities.",
           tech: ["Next.js", "Solidity", "IPFS", "Ethers.js", "Tailwind"],
@@ -74,7 +87,7 @@ export default function Projects() {
     return (
         <motion.section
             id="projects"
-            className="py-20 px-6 lg:px-4 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm" // Fixed: Changed px-56 to px-6
+            className="py-20 px-6 lg:px-4 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
@@ -129,19 +142,24 @@ export default function Projects() {
                                         whileHover={{ scale: 1 }}
                                     >
                                         <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                                            <Button size="sm" className="bg-white text-slate-900 hover:bg-slate-100">
-                                                <ExternalLink className="w-4 h-4 mr-2" />
-                                                Live Demo
+                                            <Button asChild size="sm" className="bg-white text-slate-900 hover:bg-slate-100">
+                                                <Link href={project.demo} target="_blank" rel="noopener noreferrer">
+                                                    <ExternalLink className="w-4 h-4 mr-2" />
+                                                    Live Demo
+                                                </Link>
                                             </Button>
                                         </motion.div>
                                         <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                                             <Button
+                                                asChild
                                                 size="sm"
                                                 variant="outline"
                                                 className="bg-slate-900/80 text-white border-white hover:bg-slate-800"
                                             >
-                                                <Github className="w-4 h-4 mr-2" />
-                                                Code
+                                                <Link href={project.github} target="_blank" rel="noopener noreferrer">
+                                                    <Github className="w-4 h-4 mr-2" />
+                                                    Code
+                                                </Link>
                                             </Button>
                                         </motion.div>
                                     </motion.div>
@@ -171,5 +189,5 @@ export default function Projects() {
                 </div>
             </div>
         </motion.section>
-    )
+    );
 }
