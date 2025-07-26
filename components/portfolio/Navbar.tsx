@@ -191,7 +191,7 @@ export default function Navbar({ setShowContactForm, setSelectedService }: Navba
                         transition={{ delay: navItems.length * 0.1, duration: 0.3 }}
                     >
                         <a
-                            href="/resume.pdf"
+                            href="/MuhammadShah-July-2025-semicolon.pdf"
                             download
                             className="block w-full text-left px-4 py-3 text-base text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-800/50 transition-colors duration-200 border-b border-gray-200/50 dark:border-gray-700/50"
                         >
