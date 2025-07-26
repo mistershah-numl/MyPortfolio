@@ -114,7 +114,7 @@ export default function Hero({ currentSpecialization, specializations, setShowCo
                                 transition={{ duration: 0.4, ease: "easeOut" }}
                             >
                                 <Image
-                                    src="/portfolio1.png"
+                                    src="/Portfolio1.png"
                                     alt="Professional Portrait"
                                     width={224} // Match w-56 (224px)
                                     height={288} // Match h-72 (288px)
