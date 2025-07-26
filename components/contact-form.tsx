@@ -69,41 +69,33 @@ export function ContactForm({ isOpen, onClose, selectedService = "" }: ContactFo
     }
 
     try {
-      // Prepare form data for Web3Forms
       const web3FormsData = new FormData()
-
-      // Web3Forms required fields
-      web3FormsData.append("access_key", "fccc41b3-4cb1-4e64-97f9-bc0e272cdd65") // Replace with your key
+      web3FormsData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "fccc41b3-4cb1-4e64-97f9-bc0e272cdd65")
       web3FormsData.append("name", formData.name)
       web3FormsData.append("email", formData.email)
       web3FormsData.append("subject", `New Project Inquiry: ${formData.subject}`)
-
-      // Custom fields
       web3FormsData.append("company", formData.company || "Not specified")
       web3FormsData.append("phone", formData.phone || "Not provided")
       web3FormsData.append("services", formData.services.join(", "))
       web3FormsData.append("budget", formData.budget || "Not specified")
       web3FormsData.append("timeline", formData.timeline || "Not specified")
       web3FormsData.append("project_details", formData.message)
-
-      // Web3Forms configuration
-      web3FormsData.append("redirect", `${window.location.origin}/thank-you`)
-      web3FormsData.append("from_name", "DevMaster Portfolio")
+      web3FormsData.append("from_name", "MisterShah Portfolio")
       web3FormsData.append("autoresponse", "true")
 
-      // Send to Web3Forms
-      const response = await fetch("https://api.web3forms.com/submit/", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: web3FormsData
+        body: web3FormsData,
+        redirect: "follow", // Follow 301 redirects
       })
 
-      const result = await response.json()
+      const text = await response.text() // Get raw response text
+      console.log("Web3Forms response:", { status: response.status, text }) // Debug log
 
-      if (result.success) {
+      // Success if status is 200 (OK) or 302 (Found) after redirect, matching email receipt
+      if (response.status === 200 || response.status === 302) {
         setIsSubmitting(false)
         setIsSubmitted(true)
-
-        // Reset form after 3 seconds
         setTimeout(() => {
           setIsSubmitted(false)
           onClose()
@@ -120,11 +112,11 @@ export function ContactForm({ isOpen, onClose, selectedService = "" }: ContactFo
           })
         }, 3000)
       } else {
-        throw new Error(result.message || "Failed to send message")
+        throw new Error(`Failed with status ${response.status}`)
       }
     } catch (err) {
       setIsSubmitting(false)
-      setError("An error occurred while sending the message. Please try again or Try Contacting on Social Media Channel.")
+      setError("An error occurred while sending the message. Please try again or contact via social media.")
       console.error("Form submission error:", err)
     }
   }
@@ -144,18 +136,18 @@ export function ContactForm({ isOpen, onClose, selectedService = "" }: ContactFo
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         transition={{ type: "spring", duration: 0.5 }}
-        className="w-full max-w-4xl max-h-[90vh] overflow-y-auto"
+        className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl max-h-[85vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        <Card className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700">
+        <Card className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
           <CardHeader className="relative">
             <Button variant="ghost" size="sm" className="absolute right-4 top-4" onClick={onClose}>
-              <X className="w-4 h-4" />
+              <X className="w-5 h-5" />
             </Button>
-            <CardTitle className="text-2xl bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:to-purple-400 bg-clip-text text-transparent">
+            <CardTitle className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:to-purple-400 bg-clip-text text-transparent">
               Let's Work Together
             </CardTitle>
-            <CardDescription className="dark:text-slate-300">
+            <CardDescription className="text-sm sm:text-base dark:text-gray-300">
               Tell me about your project and let's create something amazing together.
             </CardDescription>
           </CardHeader>
@@ -166,14 +158,12 @@ export function ContactForm({ isOpen, onClose, selectedService = "" }: ContactFo
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-12"
+                  className="text-center py-8"
                 >
-                  <CheckCircle className="w-16 h-16 text-green-600 dark:text-green-400 mx-auto mb-4" />
-                  <h3 className="text-2xl font-semibold mb-2 text-slate-800 dark:text-slate-100">
-                    Message Sent Successfully! 🎉
-                  </h3>
+                  <CheckCircle className="w-12 h-12 sm:w-16 sm:h-16 text-green-600 dark:text-green-400 mx-auto mb-4" />
+                  <h1 className="text-3xl font-bold text-slate-800 dark:text-slate-100">Thank You!</h1>
                   <p className="text-slate-600 dark:text-slate-300">
-                    Thank you for reaching out! You'll receive a confirmation email, and I'll get back to you within 24 hours.
+                    Your message has been sent. You'll receive a confirmation email, and I'll get back to you within 24 hours.
                   </p>
                 </motion.div>
               ) : (
@@ -181,22 +171,22 @@ export function ContactForm({ isOpen, onClose, selectedService = "" }: ContactFo
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   onSubmit={handleSubmit}
-                  className="space-y-6"
+                  className="space-y-4 sm:space-y-6"
                 >
                   {error && (
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4"
+                      className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3 sm:p-4"
                     >
                       <p className="text-red-600 dark:text-red-400 text-sm">{error}</p>
                     </motion.div>
                   )}
 
                   {/* Personal Information */}
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="name" className="dark:text-slate-200">
+                      <Label htmlFor="name" className="dark:text-gray-200 text-sm sm:text-base">
                         Full Name *
                       </Label>
                       <Input
@@ -204,12 +194,12 @@ export function ContactForm({ isOpen, onClose, selectedService = "" }: ContactFo
                         value={formData.name}
                         onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
                         required
-                        className="mt-1 dark:bg-slate-800 dark:border-slate-600 dark:text-slate-100"
+                        className="mt-1 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 text-sm sm:text-base"
                         placeholder="John Doe"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="email" className="dark:text-slate-200">
+                      <Label htmlFor="email" className="dark:text-gray-200 text-sm sm:text-base">
                         Email Address *
                       </Label>
                       <Input
@@ -218,27 +208,27 @@ export function ContactForm({ isOpen, onClose, selectedService = "" }: ContactFo
                         value={formData.email}
                         onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
                         required
-                        className="mt-1 dark:bg-slate-800 dark:border-slate-600 dark:text-slate-100"
+                        className="mt-1 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 text-sm sm:text-base"
                         placeholder="john@example.com"
                       />
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="company" className="dark:text-slate-200">
+                      <Label htmlFor="company" className="dark:text-gray-200 text-sm sm:text-base">
                         Company/Organization
                       </Label>
                       <Input
                         id="company"
                         value={formData.company}
                         onChange={(e) => setFormData((prev) => ({ ...prev, company: e.target.value }))}
-                        className="mt-1 dark:bg-slate-800 dark:border-slate-600 dark:text-slate-100"
+                        className="mt-1 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 text-sm sm:text-base"
                         placeholder="Acme Corp"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="phone" className="dark:text-slate-200">
+                      <Label htmlFor="phone" className="dark:text-gray-200 text-sm sm:text-base">
                         Phone Number
                       </Label>
                       <Input
@@ -246,7 +236,7 @@ export function ContactForm({ isOpen, onClose, selectedService = "" }: ContactFo
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
-                        className="mt-1 dark:bg-slate-800 dark:border-slate-600 dark:text-slate-100"
+                        className="mt-1 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 text-sm sm:text-base"
                         placeholder="+1 (555) 123-4567"
                       />
                     </div>
@@ -254,8 +244,8 @@ export function ContactForm({ isOpen, onClose, selectedService = "" }: ContactFo
 
                   {/* Services */}
                   <div>
-                    <Label className="text-base font-semibold dark:text-slate-200">Services Needed *</Label>
-                    <div className="grid md:grid-cols-2 gap-3 mt-3">
+                    <Label className="text-sm sm:text-base font-semibold dark:text-gray-200">Services Needed *</Label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mt-2 sm:mt-3">
                       {services.map((service) => (
                         <div key={service} className="flex items-center space-x-2">
                           <Checkbox
@@ -265,7 +255,7 @@ export function ContactForm({ isOpen, onClose, selectedService = "" }: ContactFo
                           />
                           <Label
                             htmlFor={service}
-                            className="text-sm font-normal dark:text-slate-300 cursor-pointer"
+                            className="text-xs sm:text-sm font-normal dark:text-gray-300 cursor-pointer"
                           >
                             {service}
                           </Label>
@@ -278,24 +268,24 @@ export function ContactForm({ isOpen, onClose, selectedService = "" }: ContactFo
                   </div>
 
                   {/* Budget and Timeline */}
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="budget" className="dark:text-slate-200">
+                      <Label htmlFor="budget" className="dark:text-gray-200 text-sm sm:text-base">
                         Project Budget
                       </Label>
                       <Select
                         value={formData.budget}
                         onValueChange={(value) => setFormData((prev) => ({ ...prev, budget: value }))}
                       >
-                        <SelectTrigger className="mt-1 dark:bg-slate-800 dark:border-slate-600 dark:text-slate-100">
+                        <SelectTrigger className="mt-1 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 text-sm sm:text-base">
                           <SelectValue placeholder="Select budget range" />
                         </SelectTrigger>
-                        <SelectContent className="dark:bg-slate-800 dark:border-slate-600">
+                        <SelectContent className="dark:bg-gray-800 dark:border-gray-600">
                           {budgetRanges.map((range) => (
                             <SelectItem
                               key={range}
                               value={range}
-                              className="dark:text-slate-100 dark:focus:bg-slate-700"
+                              className="dark:text-gray-100 dark:focus:bg-gray-700 text-sm sm:text-base"
                             >
                               {range}
                             </SelectItem>
@@ -304,22 +294,22 @@ export function ContactForm({ isOpen, onClose, selectedService = "" }: ContactFo
                       </Select>
                     </div>
                     <div>
-                      <Label htmlFor="timeline" className="dark:text-slate-200">
+                      <Label htmlFor="timeline" className="dark:text-gray-200 text-sm sm:text-base">
                         Project Timeline
                       </Label>
                       <Select
                         value={formData.timeline}
                         onValueChange={(value) => setFormData((prev) => ({ ...prev, timeline: value }))}
                       >
-                        <SelectTrigger className="mt-1 dark:bg-slate-800 dark:border-slate-600 dark:text-slate-100">
+                        <SelectTrigger className="mt-1 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 text-sm sm:text-base">
                           <SelectValue placeholder="Select timeline" />
                         </SelectTrigger>
-                        <SelectContent className="dark:bg-slate-800 dark:border-slate-600">
+                        <SelectContent className="dark:bg-gray-800 dark:border-gray-600">
                           {timelineOptions.map((option) => (
                             <SelectItem
                               key={option}
                               value={option}
-                              className="dark:text-slate-100 dark:focus:bg-slate-700"
+                              className="dark:text-gray-100 dark:focus:bg-gray-700 text-sm sm:text-base"
                             >
                               {option}
                             </SelectItem>
@@ -331,7 +321,7 @@ export function ContactForm({ isOpen, onClose, selectedService = "" }: ContactFo
 
                   {/* Subject and Message */}
                   <div>
-                    <Label htmlFor="subject" className="dark:text-slate-200">
+                    <Label htmlFor="subject" className="dark:text-gray-200 text-sm sm:text-base">
                       Subject *
                     </Label>
                     <Input
@@ -339,13 +329,13 @@ export function ContactForm({ isOpen, onClose, selectedService = "" }: ContactFo
                       value={formData.subject}
                       onChange={(e) => setFormData((prev) => ({ ...prev, subject: e.target.value }))}
                       required
-                      className="mt-1 dark:bg-slate-800 dark:border-slate-600 dark:text-slate-100"
+                      className="mt-1 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 text-sm sm:text-base"
                       placeholder="E-commerce Website Development"
                     />
                   </div>
 
                   <div>
-                    <Label htmlFor="message" className="dark:text-slate-200">
+                    <Label htmlFor="message" className="dark:text-gray-200 text-sm sm:text-base">
                       Project Details *
                     </Label>
                     <Textarea
@@ -353,9 +343,9 @@ export function ContactForm({ isOpen, onClose, selectedService = "" }: ContactFo
                       value={formData.message}
                       onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
                       required
-                      className="mt-1 dark:bg-slate-800 dark:border-slate-600 dark:text-slate-100"
-                      rows={5}
-                      placeholder="Please provide detailed information about your project, requirements, and any specific needs. The more details you provide, the better I can understand your vision and provide an accurate quote."
+                      className="mt-1 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 text-sm sm:text-base"
+                      rows={4}
+                      placeholder="Please provide detailed information about your project..."
                     />
                   </div>
 
@@ -364,7 +354,7 @@ export function ContactForm({ isOpen, onClose, selectedService = "" }: ContactFo
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-500 dark:to-purple-500 hover:from-blue-700 hover:to-purple-700 dark:hover:from-cyan-600 dark:hover:to-purple-600 text-white py-3 font-medium"
+                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-500 dark:to-purple-500 hover:from-blue-700 hover:to-purple-700 dark:hover:from-cyan-600 dark:hover:to-purple-600 text-white py-2 sm:py-3 font-medium text-sm sm:text-base"
                     >
                       {isSubmitting ? (
                         <>
@@ -377,14 +367,14 @@ export function ContactForm({ isOpen, onClose, selectedService = "" }: ContactFo
                         </>
                       ) : (
                         <>
-                          <Send className="w-4 h-4 mr-2" />
+                          <Send className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                           Send Message
                         </>
                       )}
                     </Button>
                   </motion.div>
 
-                  <p className="text-xs text-slate-500 dark:text-slate-400 text-center">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
                     By submitting this form, you agree to receive email communications about your project inquiry.
                   </p>
                 </motion.form>
