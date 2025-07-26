@@ -116,9 +116,10 @@ export default function Hero({ currentSpecialization, specializations, setShowCo
                                 <Image
                                     src="/portfolio1.png"
                                     alt="Professional Portrait"
-                                    width={224}
-                                    height={288}
+                                    width={224} // Match w-56 (224px)
+                                    height={288} // Match h-72 (288px)
                                     className="w-full h-full object-cover"
+                                    onError={(e) => console.error("Image failed to load:", e)} // Debug on error
                                 />
                                 <motion.div
                                     className="absolute inset-0 bg-gradient-to-t from-blue-600/20 via-transparent to-transparent dark:from-cyan-600/20"

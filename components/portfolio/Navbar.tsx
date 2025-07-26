@@ -112,7 +112,7 @@ export default function Navbar({ setShowContactForm, setSelectedService }: Navba
                                 className="px-4 py-2 text-base bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border-gray-300 dark:border-gray-600 hover:bg-white/80 dark:hover:bg-gray-700/80"
                                 asChild
                             >
-                                <a href="/resume.pdf" download>
+                                <a href="/MuhammadShah-July-2025-semicolon.pdf" download>
                                     <Download className="w-4 h-4 mr-2" />
                                     Resume
                                 </a>
