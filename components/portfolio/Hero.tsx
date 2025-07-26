@@ -11,7 +11,7 @@ interface HeroProps {
 
 export default function Hero({ currentSpecialization, specializations, setShowContactForm }: HeroProps) {
     return (
-        <section className="pt-16 sm:pt-20 lg:pt-24 pb-8 sm:pb-12 lg:pb-16 px-4 sm:px-6 lg:px-8 min-h-[70vh] flex items-center">
+        <section className="pt-16 sm:pt-20 lg:pt-24 pb-8 sm:pb-12 lg:pb-16 px-4 sm:px-6 lg:px-4 min-h-[70vh] flex items-center">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
                     {/* Left Side - Content */}

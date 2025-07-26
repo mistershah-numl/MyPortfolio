@@ -80,7 +80,7 @@ export default function Skills() {
     return (
         <motion.section
             id="skills"
-            className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8"
+            className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-4"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}

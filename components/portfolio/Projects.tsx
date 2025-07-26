@@ -74,7 +74,7 @@ export default function Projects() {
     return (
         <motion.section
             id="projects"
-            className="py-20 px-6 lg:px-8 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm" // Fixed: Changed px-56 to px-6
+            className="py-20 px-6 lg:px-4 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm" // Fixed: Changed px-56 to px-6
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}

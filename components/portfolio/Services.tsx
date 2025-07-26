@@ -54,13 +54,13 @@ export default function Services({ setShowContactForm, setSelectedService }: Ser
     return (
         <motion.section
             id="services"
-            className="py-20 px-6 lg:px-8"
+            className="py-20 px-6 lg:px-4"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
         >
-            <div className="container mx-auto px-6 lg:px-8">
+            <div className="container mx-auto px-6 lg:px-4">
                 <motion.h2
                     className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-slate-900 to-orange-900 dark:from-white dark:to-orange-300 bg-clip-text text-transparent"
                     initial={{ opacity: 0, y: 20 }}
