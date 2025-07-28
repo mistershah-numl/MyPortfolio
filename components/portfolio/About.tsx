@@ -35,7 +35,7 @@ export default function About() {
                             Building Tomorrow's Digital Infrastructure
                         </h3>
                         <p className="text-base sm:text-base lg:text-lg text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed">
-                            With over 6 years of experience in cutting-edge technology development, I specialize in creating secure,
+                            With over 3 years of experience in cutting-edge technology development, I specialize in creating secure,
                             scalable applications that solve complex real-world problems. My expertise spans across modern web
                             technologies, blockchain protocols, and enterprise cybersecurity.
                         </p>
@@ -47,9 +47,9 @@ export default function About() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                             {[
-                                { icon: Award, text: "6+ Years Experience", color: "text-blue-600 dark:text-cyan-400" },
-                                { icon: Users, text: "100+ Projects", color: "text-purple-600 dark:text-purple-400" },
-                                { icon: Star, text: "50+ Happy Clients", color: "text-green-600 dark:text-green-400" },
+                                { icon: Award, text: "3+ Years Experience", color: "text-blue-600 dark:text-cyan-400" },
+                                { icon: Users, text: "10+ Projects", color: "text-purple-600 dark:text-purple-400" },
+                                { icon: Star, text: "5+ Happy Clients", color: "text-green-600 dark:text-green-400" },
                                 { icon: Zap, text: "24/7 Support", color: "text-orange-600 dark:text-orange-400" },
                             ].map((item, index) => (
                                 <motion.div
