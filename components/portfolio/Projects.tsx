@@ -10,7 +10,7 @@ const projects = [
     {
         title: "Glocal Travel",
         description:
-            "A modern web app for spiritual journeys, featuring Hajj and Umrah packages with a seamless user experience.",
+            "Contributed to Front End of a modern web app for spiritual journeys, featuring Hajj and Umrah packages with a seamless user experience.",
         tech: ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "Lucide React"],
         category: "Full-Stack",
         image: "https://sjc.microlink.io/xJELiKL8C-JYkw01BrOmgqV0W6MGwPFnsITauVjMvA8fp8nImdW9WbjHdkcSzKB0EXPGbTCDFgFMD0VKXTWtyQ.jpeg",
@@ -21,7 +21,7 @@ const projects = [
     {
         title: "Assessment Tracker",
         description:
-            "A powerful Assessment Tracker & feedback tool for team assessments and leadership development.",
+            "Contributed to Front End of 'Assessment Tracker' which is a tool for team assessments and leadership development.",
         tech: ["Next.js", "React", "Tailwind CSS", "TypeScript", "Vercel"],
         category: "Full-Stack",
         image: "https://api.microlink.io?url=https://leadbetter-delta.vercel.app/&screenshot=true&embed=screenshot.url",
