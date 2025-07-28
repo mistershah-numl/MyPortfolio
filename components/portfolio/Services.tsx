@@ -20,28 +20,28 @@ const services: Service[] = [
         description: "Complete web application development from frontend to backend with modern technologies.",
         icon: Globe,
         features: ["React/Next.js Development", "API Development", "Database Design", "Cloud Deployment"], // Fixed: Removed comma in string (line 12)
-        price: "Starting at $500",
+        price: "Starting at $100",
     },
     {
         title: "Blockchain Development",
         description: "Smart contracts, DeFi protocols, and Web3 application development.",
         icon: Coins,
         features: ["Smart Contract Development", "DeFi Creation", "NFT Marketplace", "Web3 Integration"],
-        price: "Starting at $1,000",
+        price: "Starting at $150",
     },
     {
         title: "Cybersecurity Consulting",
         description: "Comprehensive security assessments and penetration testing services.",
         icon: Shield,
         features: ["Security Audits", "Penetration Testing", "Vulnerability Assessment", "Security Training"],
-        price: "Starting at $1,000",
+        price: "Starting at $350",
     },
     {
         title: "Technical Consulting",
         description: "Architecture design, code review, and technical strategy consultation.",
         icon: FileCode,
         features: ["Architecture Review", "Code Auditing", "Performance Optimization", "Team Training"],
-        price: "Starting at $500",
+        price: "Starting at $200",
     },
 ]
 

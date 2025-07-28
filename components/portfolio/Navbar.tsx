@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect, useRef } from "react"
@@ -62,7 +61,9 @@ export default function Navbar({ setShowContactForm, setSelectedService }: Navba
                         className="text-xl sm:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:to-purple-400 bg-clip-text text-transparent"
                         whileTap={{ scale: 0.95 }}
                     >
-                        {"<"}MisterShah{" />"}
+                        <Link href="/">
+                            {"<"}MisterShah{" />"}
+                        </Link>
                     </motion.div>
 
                     {/* Desktop Menu */}
@@ -112,7 +113,7 @@ export default function Navbar({ setShowContactForm, setSelectedService }: Navba
                                 className="px-4 py-2 text-base bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border-gray-300 dark:border-gray-600 hover:bg-white/80 dark:hover:bg-gray-700/80"
                                 asChild
                             >
-                                <a href="/MuhammadShah-July-2025-semicolon.pdf" download>
+                                <a href="/MuhammadShah.pdf" download>
                                     <Download className="w-4 h-4 mr-2" />
                                     Resume
                                 </a>
@@ -191,7 +192,7 @@ export default function Navbar({ setShowContactForm, setSelectedService }: Navba
                         transition={{ delay: navItems.length * 0.1, duration: 0.3 }}
                     >
                         <a
-                            href="/MuhammadShah-July-2025-semicolon.pdf"
+                            href="/MuhammadShah.pdf"
                             download
                             className="block w-full text-left px-4 py-3 text-base text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-800/50 transition-colors duration-200 border-b border-gray-200/50 dark:border-gray-700/50"
                         >

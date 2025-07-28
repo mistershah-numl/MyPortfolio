@@ -1,6 +1,6 @@
-
-import { motion } from "framer-motion"
-import { Github, Linkedin, Mail } from "lucide-react"
+import { motion } from "framer-motion";
+import { Github, Linkedin, Mail, MessageCircle } from "lucide-react";
+import Link from "next/link";
 
 export default function Footer() {
     return (
@@ -9,7 +9,9 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8 text-center md:text-left">
                     <div>
                         <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-blue-400 to-purple-400 dark:from-cyan-400 dark:to-purple-400 bg-clip-text text-transparent">
-                            {"<"}MisterShah{" />"}
+                            <Link href="/">
+                                {"<"}MisterShah{" />"}
+                            </Link>
                         </h3>
                         <p className="text-gray-400 dark:text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base leading-relaxed">
                             Building the future of web with cutting-edge technology and innovative solutions.
@@ -43,6 +45,16 @@ export default function Footer() {
                             >
                                 <Mail className="w-6 h-6 sm:w-6 sm:h-6" />
                             </motion.a>
+                            <motion.a
+                                href="https://wa.me/923209700229"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                whileHover={{ scale: 1.2, y: -2 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="text-gray-400 dark:text-gray-300 hover:text-white dark:hover:text-cyan-400 transition-colors duration-300"
+                            >
+                                <MessageCircle className="w-6 h-6 sm:w-6 sm:h-6" />
+                            </motion.a>
                         </div>
                     </div>
 
@@ -50,22 +62,22 @@ export default function Footer() {
                         <h4 className="font-semibold mb-3 sm:mb-4 text-white text-base sm:text-lg">Services</h4>
                         <ul className="space-y-1 sm:space-y-2 text-gray-400 dark:text-gray-300 text-sm sm:text-base">
                             <li>
-                                <a href="#" className="hover:text-white dark:hover:text-cyan-400 transition-colors">
+                                <a href="#services" className="hover:text-white dark:hover:text-cyan-400 transition-colors">
                                     Web Development
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="hover:text-white dark:hover:text-cyan-400 transition-colors">
+                                <a href="#services" className="hover:text-white dark:hover:text-cyan-400 transition-colors">
                                     Blockchain
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="hover:text-white dark:hover:text-cyan-400 transition-colors">
+                                <a href="#services" className="hover:text-white dark:hover:text-cyan-400 transition-colors">
                                     Cybersecurity
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="hover:text-white dark:hover:text-cyan-400 transition-colors">
+                                <a href="#services" className="hover:text-white dark:hover:text-cyan-400 transition-colors">
                                     Consulting
                                 </a>
                             </li>
@@ -76,22 +88,22 @@ export default function Footer() {
                         <h4 className="font-semibold mb-3 sm:mb-4 text-white text-base sm:text-lg">Technologies</h4>
                         <ul className="space-y-1 sm:space-y-2 text-gray-400 dark:text-gray-300 text-sm sm:text-base">
                             <li>
-                                <a href="#" className="hover:text-white dark:hover:text-cyan-400 transition-colors">
+                                <a href="https://www.contentful.com/blog/next-js-vs-react/" target="_blank" rel="noopener noreferrer" className="hover:text-white dark:hover:text-cyan-400 transition-colors">
                                     React & Next.js
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="hover:text-white dark:hover:text-cyan-400 transition-colors">
+                                <a href="https://kinsta.com/blog/nodejs-vs-python/" target="_blank" rel="noopener noreferrer" className="hover:text-white dark:hover:text-cyan-400 transition-colors">
                                     Node.js & Python
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="hover:text-white dark:hover:text-cyan-400 transition-colors">
+                                <a href="https://soliditylang.org/" target="_blank" rel="noopener noreferrer" className="hover:text-white dark:hover:text-cyan-400 transition-colors">
                                     Solidity & Web3
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="hover:text-white dark:hover:text-cyan-400 transition-colors">
+                                <a href="https://aws.amazon.com/devops/what-is-devops/" target="_blank" rel="noopener noreferrer" className="hover:text-white dark:hover:text-cyan-400 transition-colors">
                                     Cloud & DevOps
                                 </a>
                             </li>
