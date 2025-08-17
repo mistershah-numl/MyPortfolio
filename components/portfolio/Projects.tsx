@@ -40,6 +40,17 @@ const projects = [
         demo: "https://mistershah-numl.github.io/react-gpt3/",
         featured: true,
     },
+    {
+        title: "Next JS Blog Website",
+        description:
+            "A Simple yet Modern blog site built with React, showcasing an elegant design and deployed on GitHub Pages.",
+        tech: ["React", "HTML", "CSS", "JavaScript"],
+        category: "Front-End",
+        image: "https://api.microlink.io?url=https://strong-blog.vercel.app/&screenshot=true&embed=screenshot.url",
+        github: "https://github.com/mistershah-numl/strongblog",
+        demo: "https://strong-blog.vercel.app/",
+        featured: true,
+    },
     /*
     {
         title: "E-commerce Microservices",
